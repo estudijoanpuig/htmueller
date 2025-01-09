@@ -38,6 +38,10 @@
 
     <!-- COPY CSS -->
     <link rel="stylesheet" href="copy/style.css">
+	
+	<!-- FANCYBOX -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 
 
 
@@ -209,11 +213,9 @@ $conn->close();
                         <div class="column lg-6 stack-on-1100 section-header__primary">
                             <h2 class="title text-display-1">
                                 <?php echo htmlspecialchars($post['title']); ?>
-                            </h2>
-                            <a data-fancybox data-src="img/<?php echo $post['img']; ?> "
-                                data-caption=" <?php echo $post['excerpt']; ?>">
-                                <img src="img/<?php echo $post['img']; ?> " width="150" />
-                            </a>
+                            </h2>							
+                         <a data-fancybox="gallery"href="img/<?php echo $post['img']; ?>"><img src="img/<?php echo $post['img']; ?>" alt="" title=""width="150" height="" /></a>
+							
                         </div>
                         <!-- Excerpt -->
                         <div class="column lg-6 stack-on-1100 section-header__secondary">
@@ -233,7 +235,7 @@ $conn->close();
 					
 
 					
-						<h5 class="column lg-12" style="color: Gray;" >
+						<h5 class="column lg-12" style="background-color: rgba(0, 0, 0, 0.5); color: gray; padding: 20px; border-radius: 10px; max-width: 800px; margin: auto;">
                            <?php echo $post['content']; ?>
                         </h5>
 
