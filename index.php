@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>la memoria</title>
-    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+    <link rel="icon" type="image/svg+xml" href="images/html.svg">
     <script>
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
@@ -58,7 +58,7 @@
                 <div class="s-header__block">
                     <div class="s-header__logo">
                         <a class="logo" href="index.php">
-                            <img src="images/logo.svg" alt="Homepage">
+                            <img src="images/html.svg" alt="Homepage">
                         </a>
                     </div>
 
@@ -323,10 +323,10 @@
 
                 <?php
 // Connexió a la base de dades
-$host = '127.0.0.1';
+$host = 'localhost';
 $db = 'postslar11';
-$user = 'root';
-$pass = '';
+$user = 'joan';
+$pass = 'queMm88/g62123';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
