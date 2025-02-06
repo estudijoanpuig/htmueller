@@ -508,7 +508,7 @@ $rowPattern = [2, 4]; // Patró d'imatges per fila (2 grans, 4 petites)
 
                         <div class="row section-header">
                             <div class="column lg-12">
-                                <h3 class="title text-display-1">Ara estic recopilant informacio sobre una colla 'eines que ems seran de molta utilitat.</h3>
+                                <h3 class="title text-display-1">Ara estic recopilant informacio sobre una colla 'eines que em seran de molta utilitat.</h3>
                             </div>
                         </div> <!-- end section-header -->
 
@@ -525,9 +525,12 @@ if ($conn->connect_error) {
 
 // Consulta per obtenir els posts de la categoria "Eines"
 $sql = "SELECT posts.id, posts.img 
-        FROM posts
-        JOIN categories ON posts.category_id = categories.id
-        WHERE categories.name = 'Eines'";
+FROM posts
+JOIN categories ON posts.category_id = categories.id
+JOIN post_etiquetas ON posts.id = post_etiquetas.post_id
+JOIN etiquetas ON post_etiquetas.etiqueta_id = etiquetas.id
+WHERE categories.name = 'Eines' 
+AND etiquetas.name = 'essential'";
 $result = $conn->query($sql);
 
 // Comprovar si hi ha resultats
@@ -572,7 +575,7 @@ $conn->close();
 		<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
 		<div id="nanogallery2" data-nanogallery2='{
 		"kind": "nano_photos_provider2",
-		"dataProvider": "nanogallery/nano_photos_provider2.php",
+		"dataProvider": "http://htmueller.test/nanogallery/nano_photos_content",
 		"ThumbnailHeight": 350,
 		"ThumbnailWidth": 350
 		}'>
