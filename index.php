@@ -445,8 +445,8 @@ $posts = $stmt->fetchAll();
 
                 <?php
 // Configuració de les imatges
-$directory = 'C:/xampp/htdocs/PHP/htmueller/img/people/joanpuig/';
-$relativePath = '/PHP/htmueller/img/people/joanpuig/';
+$directory = 'C:/projectes/PHP/htmueller/img/people/joanpuig/';
+$relativePath = '/img/people/joanpuig/';
 $images = glob($directory . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
 $rowPattern = [2, 4]; // Patró d'imatges per fila (2 grans, 4 petites)
