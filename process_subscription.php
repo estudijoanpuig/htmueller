@@ -49,11 +49,41 @@ try {
         throw new Exception("Error en executar consulta: " . $stmt->error);
     }
 
-    // Resposta d'èxit
-    echo json_encode([
-        'status' => 'success',
-        'message' => 'Subscripció realitzada amb èxit!'
-    ]);
+    // Enviament de correu electrònic (DESPRÉS de l'èxit a la base de dades)
+    require 'vendor/autoload.php';
+    $mail = new PHPMailer(true);
+    
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'joanpuigbertran@gmail.com';
+        $mail->Password   = 'lswd zxrk kzmk tvxh';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        $mail->setFrom('joanpuigbertran@gmail.com', 'HT Mueller');
+        $mail->addAddress($email); // Email del subscriptor
+        
+        $mail->isHTML(true);
+        $mail->Subject = 'Confirmació de subscripció';
+        $mail->Body    = '
+            <h1>Gràcies per subscriure\'t!</h1>
+            <p>Has estat subscrit correctament al nostre butlletí.</p>
+            <p>Si no has estat tu, si us plau ignora aquest correu.</p>
+        ';
+        
+        $mail->send();
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Subscripció confirmada! Revisa el teu correu.'
+        ]);
+    } catch (Exception $e) {
+        echo json_encode([
+            'status' => 'warning',
+            'message' => 'Subscripció acceptada, però no s\'ha pogut enviar la confirmació: '.$e->getMessage()
+        ]);
+    }
 
 } catch (Exception $e) {
     // Resposta d'error
