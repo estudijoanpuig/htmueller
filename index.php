@@ -567,11 +567,15 @@ $conn->close();
 
                 <div class="row s-testimonials__content">
                     <div class="column lg-12">
+					
+					
+					
+					
 
                          <!-- NANOGALLERY-->              
 <div class="uk-container uk-text-center uk-padding">
 		<h1>nanogallery joanpuig</h1>
-	<p class="uk-text-large">les meves aquarel.les</p>
+	<p class="uk-text-large">pintors que segueixo</p>
 		<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
 		<div id="nanogallery2" data-nanogallery2='{
 		"kind": "nano_photos_provider2",
@@ -598,30 +602,28 @@ $conn->close();
         <footer id="footer" class="s-footer target-section">
 
             <div class="row section-header" data-num="04">
-                <h3 class="column lg-12 section-header__pretitle text-pretitle">Get In Touch</h3>
+                <h3 class="column lg-12 section-header__pretitle text-pretitle">Poseu-vos en contacte</h3>
                 <div class="column lg-6 stack-on-1100 section-header__primary">
                     <h2 class="title text-display-1">
-                        Have an idea or an epic project in mind? Talk to us.
-                        Let's work together and make something great.
-                        Drop us a line at <a href="mailto:#0" title="">hello@mueller.com</a>
+                        Tens una idea o un projecte èpic en ment? Parla amb mi. Treballem junts i fem alguna cosa gran. Escriu-nos a <a href="mailto:#0" title="">joanpuigbertran@gmail.com</a>
                     </h2>
                 </div>
                 <div class="column lg-6 stack-on-1100 section-header__secondary">
 
                     <div class="contact-block">
-                        <h6>Where To Find Us</h6>
+                        <h6>On em podeu trobar</h6>
                         <p>
-                            1600 Amphitheatre Parkway <br>
-                            Mountain View, California <br>
-                            94043 US
+                            Passeig Ramon Vall, 20-1-2 <br>
+                            08670-Navas <br>
+                            Barcelona-Spain
                         </p>
                     </div>
 
                     <div class="contact-block">
-                        <h6>Contact Infos</h6>
+                        <h6>Telefon</h6>
                         <ul class="contact-list">
-                            <li><a href="tel:197-543-2345">+197 543 2345</a></li>
-                            <li><a href="tel:197-123-9876">+197 123 9876</a></li>
+                            <li><a href="tel:+34 613017976">+34 613017976</a></li>
+                            
                         </ul>
                     </div>
 
@@ -632,26 +634,64 @@ $conn->close();
                 <div class="column list-block__item">
                     <div class="s-footer__contact-btn">
                         <a href="mailto:#0" class="btn btn--primary u-fullwidth">
-                            Let's Talk
+                            Parlem
                         </a>
                     </div>
                 </div>
                 <div class="column list-block__item">
-                    <div class="subscribe-form s-footer__subscribe">
-                        <h6>Subscribe</h6>
-                        <form id="mc-form" class="mc-form">
-                            <input type="email" name="EMAIL" id="mce-EMAIL" class="u-fullwidth text-center"
-                                placeholder="Your Email Address"
-                                title="The domain portion of the email address is invalid (the portion after the @)."
-                                pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
-                                required>
-                            <input type="submit" name="subscribe" value="Subscribe"
-                                class="btn btn--primary u-fullwidth">
-                            <!-- <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cdb7b577e41181934ed6a6a44_9a91cfe7b3" tabindex="-1" value=""></div> -->
-                            <div class="mc-status"></div>
-                        </form>
-                    </div>
-                </div>
+    <div class="subscribe-form s-footer__subscribe">
+        <h6>Subscribe</h6>
+        <form id="mc-form" class="mc-form">
+            <input type="email" name="EMAIL" id="mce-EMAIL" class="u-fullwidth text-center"
+                placeholder="Your Email Address" required>
+            <input type="submit" name="subscribe" value="Subscribe"
+                class="btn btn--primary u-fullwidth">
+            <div class="mc-status"></div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('mc-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const statusDiv = form.querySelector('.mc-status');
+    const submitBtn = form.querySelector('[type="submit"]');
+    
+    statusDiv.textContent = 'Enviant...';
+    statusDiv.style.color = 'inherit';
+    submitBtn.disabled = true;
+    
+    try {
+        const response = await fetch('process_subscription.php', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) throw new Error('Error de servidor');
+        
+        const data = await response.json();
+        
+        if(data.status === 'success') {
+            statusDiv.textContent = data.message;
+            statusDiv.style.color = 'green';
+            form.reset();
+        } else {
+            throw new Error(data.message || 'Error desconegut');
+        }
+    } catch (error) {
+        statusDiv.textContent = error.message;
+        statusDiv.style.color = 'red';
+        console.error('Error:', error);
+    } finally {
+        submitBtn.disabled = false;
+    }
+});
+</script>
             </div> <!-- end s-footer__btns -->
 
             <div class="row s-footer__bottom">
