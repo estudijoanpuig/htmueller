@@ -575,7 +575,7 @@ $conn->close();
 		<link href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
 		<div id="nanogallery2" data-nanogallery2='{
 		"kind": "nano_photos_provider2",
-		"dataProvider": "http://htmueller.test/nanogallery/nano_photos_content",
+		"dataProvider": "http://htmueller.test/nano_photos_provider2.php",
 		"ThumbnailHeight": 350,
 		"ThumbnailWidth": 350
 		}'>
